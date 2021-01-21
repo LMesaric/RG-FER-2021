@@ -1,5 +1,4 @@
 // ReSharper disable CppInconsistentNaming
-#include <cstdio>
 #include <gl/freeglut.h>
 #include <algorithm>
 #include <glm/vec3.hpp>
