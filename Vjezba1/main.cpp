@@ -47,8 +47,8 @@ void myDisplay();
 void myReshape(int w, int h);
 void myIdle();
 long long getCurrentTimeMs();
-void loadPoints(char* file);
-void loadModel(char* file);
+void loadPoints(const char* file);
+void loadModel(const char* file);
 void precalculate();
 void drawSpline();
 void drawObject();
@@ -60,14 +60,8 @@ glm::mat4 bSplineHelp(int segment);
 
 int main(int argc, char** argv)
 {
-	if (argc != 3)
-	{
-		printf("Need exactly two parameters!\n");
-		exit(1);
-	}
-
-	loadModel(argv[1]);
-	loadPoints(argv[2]);
+	loadModel("../Models/f16.obj");
+	loadPoints("../Vjezba1/points.txt");
 	precalculate();
 
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
@@ -161,7 +155,7 @@ long long getCurrentTimeMs()
 		std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
-void loadPoints(char* file)
+void loadPoints(const char* file)
 {
 	std::string line;
 	std::ifstream infile(file);
@@ -177,7 +171,7 @@ void loadPoints(char* file)
 	infile.close();
 }
 
-void loadModel(char* file)
+void loadModel(const char* file)
 {
 	std::string line;
 	std::ifstream infile(file);
@@ -210,7 +204,7 @@ void precalculate()
 	auto y_min = v[0].y, y_max = y_min;
 	auto z_min = v[0].z, z_max = z_min;
 
-	for (auto vi : v)
+	for (auto& vi : v)
 	{
 		x_min = std::min(x_min, vi.x);
 		x_max = std::max(x_max, vi.x);
@@ -251,7 +245,7 @@ void precalculate()
 	y_min = points_v[0].y, y_max = y_min;
 	z_min = points_v[0].z, z_max = z_min;
 
-	for (auto vi : points_v)
+	for (auto& vi : points_v)
 	{
 		x_min = std::min(x_min, vi.x);
 		x_max = std::max(x_max, vi.x);
@@ -293,7 +287,7 @@ void drawSpline()
 void drawObject()
 {
 	glPolygonMode(GL_FRONT, GL_LINE);
-	for (auto fi : f)
+	for (auto& fi : f)
 	{
 		glBegin(GL_POLYGON);
 		{
