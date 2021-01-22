@@ -10,13 +10,13 @@ Model of an F-16 aircraft travels along a B-spline determined by a set of contro
 
 <br>
 
-![lab1](Images\lab1.gif)
+![lab1](Images/lab1.gif)
 
 <br>
 
 # Lab2 - Particle system
 
-![lab2](Images\lab2.gif)
+![lab2](Images/lab2.gif)
 
 <br>
 
